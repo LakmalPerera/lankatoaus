@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LankaToAus – Inner Pages</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --red:#C0392B;--red-dk:#962d22;--red-lt:#fdecea;
+    --gold:#E8A020;--gold-lt:#fdf3e0;
+    --green:#1a6b3c;--green-lt:#e6f4ed;
+    --cream:#FBF7F2;--ivory:#F5EFE6;
+    --dark:#1C1412;--mid:#5A4A42;--muted:#9C8880;
+    --white:#FFFFFF;--border:#E8DDD5;
+    --radius:12px;--radius-sm:8px;--radius-lg:18px;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);font-size:15px;line-height:1.6}
+
+  /* ─── TOP BAR ─── */
+  .topbar{background:var(--red);color:#fff;text-align:center;font-size:12px;letter-spacing:.04em;padding:7px 16px;font-weight:500}
+  .topbar span{opacity:.85;margin:0 18px}
+
+  /* ─── NAV ─── */
+  nav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+  .nav-inner{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:0;padding:0 24px;height:64px}
+  .logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--red);text-decoration:none;margin-right:40px;white-space:nowrap}
+  .logo span{color:var(--gold)}
+  .nav-links{display:flex;gap:2px;flex:1}
+  .nav-links a{padding:8px 14px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;color:var(--mid);text-decoration:none;transition:.15s;white-space:nowrap}
+  .nav-links a:hover,.nav-links a.active{background:var(--red-lt);color:var(--red)}
+  .nav-right{display:flex;align-items:center;gap:10px;margin-left:auto}
+  .btn-ghost{background:none;border:1.5px solid var(--border);color:var(--mid);padding:8px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:.15s}
+  .btn-ghost:hover{border-color:var(--red);color:var(--red)}
+  .btn-primary{background:var(--red);border:none;color:#fff;padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+  .btn-primary:hover{background:var(--red-dk)}
+
+  /* ─── PAGE CONTAINER ─── */
+  .page{display:none;animation:fadeIn .25s ease}
+  .page.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .container{max-width:1160px;margin:0 auto;padding:0 24px}
+
+  /* ─── BREADCRUMB ─── */
+  .breadcrumb{padding:16px 24px;max-width:1160px;margin:0 auto;font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+  .breadcrumb a{color:var(--red);text-decoration:none}
+  .breadcrumb a:hover{text-decoration:underline}
+
+  /* ─── SECTION HEADERS ─── */
+  .sec-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .sec-title{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--dark);line-height:1.2}
+  .sec-sub{color:var(--muted);font-size:15px;margin-top:8px;line-height:1.7}
+
+  /* ─── BUTTONS ─── */
+  .btn-red{display:inline-flex;align-items:center;gap:7px;background:var(--red);color:#fff;border:none;padding:12px 24px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;text-decoration:none}
+  .btn-red:hover{background:var(--red-dk)}
+  .btn-outline{display:inline-flex;align-items:center;gap:7px;background:none;color:var(--red);border:1.5px solid var(--red);padding:11px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s;text-decoration:none}
+  .btn-outline:hover{background:var(--red-lt)}
+  .btn-gold{display:inline-flex;align-items:center;gap:7px;background:var(--gold);color:#fff;border:none;padding:12px 24px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+  .btn-gold:hover{background:#c98a18}
+
+  /* ─── TAGS / BADGES ─── */
+  .tag{display:inline-block;padding:4px 10px;border-radius:30px;font-size:11px;font-weight:600;letter-spacing:.03em}
+  .tag-red{background:var(--red-lt);color:var(--red)}
+  .tag-gold{background:var(--gold-lt);color:#a06a10}
+  .tag-green{background:var(--green-lt);color:var(--green)}
+
+  /* ─── GIFT CARD ─── */
+  .gift-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;padding:24px 0}
+  .gift-card{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s}
+  .gift-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(192,57,43,.1)}
+  .gift-card-img{height:200px;display:flex;align-items:center;justify-content:center;font-size:64px;position:relative;background:linear-gradient(135deg,var(--ivory) 0%,var(--cream) 100%)}
+  .gift-card-badge{position:absolute;top:10px;left:10px}
+  .gift-card-fav{position:absolute;top:10px;right:12px;background:#fff;border:1px solid var(--border);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:.15s}
+  .gift-card-fav:hover{border-color:var(--red);background:var(--red-lt)}
+  .gift-card-body{padding:14px 16px 16px}
+  .gift-card-name{font-weight:600;font-size:14px;margin-bottom:4px;color:var(--dark)}
+  .gift-card-sub{font-size:12px;color:var(--muted);margin-bottom:10px}
+  .gift-card-footer{display:flex;align-items:center;justify-content:space-between}
+  .gift-card-price{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--red)}
+  .gift-card-price span{font-size:11px;font-family:'DM Sans',sans-serif;font-weight:400;color:var(--muted)}
+  .gift-card-add{background:var(--red);color:#fff;border:none;width:30px;height:30px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .gift-card-add:hover{background:var(--red-dk)}
+  .gift-rating{font-size:12px;color:var(--muted);margin-bottom:8px}
+  .gift-rating span{color:var(--gold)}
+
+  /* ─── SIDEBAR FILTER ─── */
+  .gifts-layout{display:grid;grid-template-columns:220px 1fr;gap:28px;padding:20px 0 40px}
+  .filter-panel{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:20px;align-self:start;position:sticky;top:84px}
+  .filter-title{font-weight:700;font-size:13px;margin-bottom:14px;color:var(--dark);letter-spacing:.04em}
+  .filter-sep{border:none;border-top:1px solid var(--border);margin:16px 0}
+  .filter-group-label{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+  .filter-check{display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;font-size:13px;color:var(--mid)}
+  .filter-check input{accent-color:var(--red);width:14px;height:14px}
+  .filter-check:hover{color:var(--red)}
+  .price-row{display:flex;gap:8px}
+  .price-input{flex:1;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;background:var(--cream)}
+  .price-input:focus{outline:2px solid var(--red);border-color:transparent}
+
+  /* ─── SEARCH / SORT BAR ─── */
+  .gifts-topbar{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .search-wrap{flex:1;position:relative}
+  .search-wrap input{width:100%;padding:10px 16px 10px 38px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;background:#fff}
+  .search-wrap input:focus{outline:2px solid var(--red);border-color:transparent}
+  .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px}
+  .sort-select{padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:13px;background:#fff;color:var(--dark);cursor:pointer}
+  .sort-select:focus{outline:2px solid var(--red)}
+  .result-count{font-size:13px;color:var(--muted);margin-bottom:4px}
+
+  /* ─── PILL FILTERS ─── */
+  .pill-bar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  .pill{padding:6px 14px;border-radius:30px;border:1.5px solid var(--border);font-size:13px;font-weight:500;cursor:pointer;background:#fff;transition:.15s;color:var(--mid)}
+  .pill:hover{border-color:var(--red);color:var(--red)}
+  .pill.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+  /* ─── OCCASIONS PAGE ─── */
+  .occ-hero{background:linear-gradient(135deg,#1C1412 0%,#3a1a10 100%);padding:60px 24px;text-align:center;position:relative;overflow:hidden}
+  .occ-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E8A020' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+  .occ-hero .sec-title{color:#fff;font-size:42px}
+  .occ-hero .sec-label{color:var(--gold)}
+  .occ-hero .sec-sub{color:rgba(255,255,255,.65);max-width:500px;margin:8px auto 0}
+  .occ-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;padding:32px 0}
+  .occ-card{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
+  .occ-card:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(192,57,43,.12);border-color:var(--red)}
+  .occ-icon{font-size:36px;margin-bottom:12px;display:block}
+  .occ-name{font-weight:700;font-size:15px;color:var(--dark);margin-bottom:4px}
+  .occ-count{font-size:12px;color:var(--muted)}
+  .occ-date{font-size:11px;font-weight:600;color:var(--gold);margin-top:6px;text-transform:uppercase;letter-spacing:.05em}
+
+  /* ─── HOW IT WORKS ─── */
+  .how-hero{background:var(--ivory);border-bottom:1px solid var(--border);padding:56px 24px;text-align:center}
+  .steps-section{padding:56px 24px}
+  .step-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-bottom:72px}
+  .step-row:last-child{margin-bottom:0}
+  .step-row.reverse{direction:rtl}
+  .step-row.reverse>*{direction:ltr}
+  .step-visual{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:40px;display:flex;align-items:center;justify-content:center;min-height:280px;position:relative}
+  .step-number-big{position:absolute;top:-18px;left:24px;font-family:'Playfair Display',serif;font-size:90px;font-weight:700;color:var(--red-lt);line-height:1;z-index:0;-webkit-text-stroke:2px var(--border)}
+  .step-emoji{font-size:72px;position:relative;z-index:1}
+  .step-content{padding:16px 0}
+  .step-num{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .step-title{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:14px;color:var(--dark)}
+  .step-desc{color:var(--mid);line-height:1.8;margin-bottom:20px;font-size:15px}
+  .step-bullets{list-style:none}
+  .step-bullets li{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:14px;color:var(--mid)}
+  .step-bullets li::before{content:'✓';color:var(--green);font-weight:700;margin-top:1px;flex-shrink:0}
+  .faq-section{background:var(--ivory);border-top:1px solid var(--border);padding:56px 24px}
+  .faq-grid{max-width:700px;margin:32px auto 0;display:flex;flex-direction:column;gap:10px}
+  .faq-item{background:#fff;border-radius:var(--radius);border:1px solid var(--border);overflow:hidden}
+  .faq-q{padding:16px 20px;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--dark)}
+  .faq-q:hover{color:var(--red)}
+  .faq-q .arrow{transition:.25s;font-size:18px;color:var(--muted)}
+  .faq-item.open .faq-q .arrow{transform:rotate(180deg);color:var(--red)}
+  .faq-a{display:none;padding:0 20px 16px;font-size:14px;color:var(--mid);line-height:1.75}
+  .faq-item.open .faq-a{display:block}
+
+  /* ─── TRACK ORDER ─── */
+  .track-hero{background:linear-gradient(160deg,var(--dark) 0%,#3a1a10 100%);padding:60px 24px 48px;text-align:center}
+  .track-hero .sec-title{color:#fff}
+  .track-hero .sec-sub{color:rgba(255,255,255,.6);max-width:460px;margin:8px auto 0}
+  .track-box{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);max-width:580px;margin:-28px auto 0;padding:32px;position:relative;z-index:2;box-shadow:0 16px 48px rgba(0,0,0,.1)}
+  .track-input-row{display:flex;gap:10px;margin-top:8px}
+  .track-input{flex:1;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:14px;background:var(--cream)}
+  .track-input:focus{outline:2px solid var(--red);border-color:transparent}
+  .track-result{max-width:580px;margin:28px auto 48px;display:none}
+  .track-result.show{display:block}
+  .track-card{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden}
+  .track-card-header{background:var(--red);padding:20px 24px;color:#fff;display:flex;align-items:center;justify-content:space-between}
+  .track-card-id{font-size:12px;opacity:.8;margin-bottom:4px}
+  .track-card-name{font-weight:700;font-size:18px}
+  .track-status-badge{background:rgba(255,255,255,.2);padding:6px 14px;border-radius:30px;font-size:12px;font-weight:700}
+  .track-card-body{padding:24px}
+  .track-timeline{display:flex;flex-direction:column;gap:0}
+  .track-step{display:flex;gap:16px;position:relative}
+  .track-step:not(:last-child)::after{content:'';position:absolute;left:15px;top:32px;bottom:-4px;width:2px;background:var(--border)}
+  .track-step.done::after{background:var(--green)}
+  .track-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:2px solid var(--border);background:#fff;position:relative;z-index:1}
+  .track-step.done .track-dot{border-color:var(--green);background:var(--green-lt)}
+  .track-step.current .track-dot{border-color:var(--red);background:var(--red-lt);box-shadow:0 0 0 4px var(--red-lt)}
+  .track-step-info{padding-bottom:24px}
+  .track-step-title{font-weight:700;font-size:14px;color:var(--dark)}
+  .track-step.done .track-step-title{color:var(--green)}
+  .track-step.current .track-step-title{color:var(--red)}
+  .track-step-desc{font-size:12px;color:var(--muted);margin-top:2px}
+  .track-step-time{font-size:11px;color:var(--gold);font-weight:600;margin-top:4px}
+  .track-map-placeholder{background:var(--ivory);border-radius:var(--radius);border:1px solid var(--border);height:160px;display:flex;align-items:center;justify-content:center;margin-top:16px;flex-direction:column;gap:8px;color:var(--muted)}
+  .delivery-eta{background:var(--green-lt);border:1px solid #b2d9c3;border-radius:var(--radius-sm);padding:12px 16px;margin-top:16px;display:flex;align-items:center;gap:12px;font-size:14px}
+  .eta-icon{font-size:20px}
+  .eta-label{font-size:12px;color:var(--muted)}
+  .eta-time{font-weight:700;color:var(--green)}
+
+  /* ─── GIFT DETAIL ─── */
+  .detail-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:24px 0 48px;align-items:start}
+  .detail-gallery{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);overflow:hidden}
+  .detail-main-img{height:360px;display:flex;align-items:center;justify-content:center;font-size:96px;background:linear-gradient(135deg,var(--ivory),var(--cream))}
+  .detail-thumbs{display:flex;gap:8px;padding:12px}
+  .detail-thumb{width:64px;height:64px;border-radius:var(--radius-sm);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:28px;cursor:pointer;transition:.15s;background:var(--cream)}
+  .detail-thumb:hover,.detail-thumb.active{border-color:var(--red)}
+  .detail-info{padding:4px 0}
+  .detail-tags{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+  .detail-name{font-family:'Playfair Display',serif;font-size:30px;font-weight:700;margin-bottom:8px;line-height:1.25}
+  .detail-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-size:13px;color:var(--muted)}
+  .detail-rating .stars{color:var(--gold);font-size:15px}
+  .detail-price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:20px}
+  .detail-price{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:var(--red)}
+  .detail-price-old{font-size:18px;color:var(--muted);text-decoration:line-through}
+  .detail-desc{color:var(--mid);line-height:1.85;margin-bottom:20px;font-size:14px}
+  .detail-opts{margin-bottom:20px}
+  .detail-opt-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px}
+  .detail-opt-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .detail-opt{padding:7px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-size:13px;cursor:pointer;transition:.15s}
+  .detail-opt:hover,.detail-opt.active{border-color:var(--red);color:var(--red);background:var(--red-lt)}
+  .detail-qty{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .qty-btn{width:36px;height:36px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+  .qty-btn:hover{border-color:var(--red);color:var(--red)}
+  .qty-val{font-size:17px;font-weight:700;min-width:30px;text-align:center}
+  .detail-actions{display:flex;flex-direction:column;gap:10px}
+  .detail-meta{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+  .detail-meta-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mid)}
+  .detail-meta-row span:first-child{font-size:16px}
+  .detail-meta-row strong{color:var(--dark)}
+
+  /* ─── HERO BANNER (page) ─── */
+  .page-hero{background:linear-gradient(135deg,var(--ivory) 0%,#f0e8df 100%);border-bottom:1px solid var(--border);padding:48px 24px}
+  .page-hero-inner{max-width:1160px;margin:0 auto}
+
+  /* ─── FOOTER ─── */
+  footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;margin-top:0}
+  .footer-inner{max-width:1160px;margin:0 auto}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:36px;margin-bottom:36px}
+  .footer-brand{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:10px}
+  .footer-brand span{color:var(--gold)}
+  .footer-tagline{font-size:13px;line-height:1.7;margin-bottom:16px}
+  .footer-flags{font-size:22px;display:flex;align-items:center;gap:8px;margin-top:8px}
+  .footer-col-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+  .footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .footer-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:13px;transition:.15s}
+  .footer-links a:hover{color:var(--gold)}
+  .footer-sub-input{display:flex;gap:8px;margin-top:8px}
+  .footer-sub-input input{flex:1;padding:10px 12px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;font-family:inherit;font-size:13px}
+  .footer-sub-input input::placeholder{color:rgba(255,255,255,.35)}
+  .footer-sub-input button{background:var(--gold);color:#fff;border:none;padding:10px 16px;border-radius:var(--radius-sm);font-family:inherit;font-size:13px;font-weight:600;cursor:pointer}
+  .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.4)}
+  .footer-badges{display:flex;gap:10px}
+  .footer-badge{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:5px 12px;border-radius:30px;font-size:11px;color:rgba(255,255,255,.55)}
+
+  /* ─── MISC ─── */
+  .divider{border:none;border-top:1px solid var(--border);margin:32px 0}
+  .text-center{text-align:center}
+  .stats-bar{display:flex;gap:0;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:#fff;margin:28px 0}
+  .stat-block{flex:1;padding:20px 16px;text-align:center;border-right:1px solid var(--border)}
+  .stat-block:last-child{border-right:none}
+  .stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--red)}
+  .stat-lbl{font-size:12px;color:var(--muted);margin-top:2px}
+  .empty-state{text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty-state .icon{font-size:48px;margin-bottom:16px}
+  .notice-bar{background:var(--gold-lt);border:1px solid #f0d090;border-radius:var(--radius-sm);padding:12px 16px;font-size:13px;color:#7a5210;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>🇦🇺 Fast delivery across Australia</span>
+  <span>·</span>
+  <span>🇱🇰 Sourced fresh from Sri Lanka</span>
+  <span>·</span>
+  <span>Free shipping on orders over $120 AUD</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#" onclick="showPage('gifts')">Lanka<span>ToAus</span></a>
+    <div class="nav-links">
+      <a href="#" onclick="showPage('gifts')" id="nav-gifts">All Gifts</a>
+      <a href="#" onclick="showPage('occasions')" id="nav-occasions">Occasions</a>
+      <a href="#" onclick="showPage('howit')" id="nav-howit">How It Works</a>
+      <a href="#" onclick="showPage('track')" id="nav-track">Track Order</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn-ghost">Login</button>
+      <button class="btn-primary">Sign Up</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  PAGE: ALL GIFTS                              -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page active" id="page-gifts">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="sec-label">🎁 Browse the Collection</div>
+      <h1 class="sec-title">All Gifts</h1>
+      <p class="sec-sub">500+ handpicked gifts sourced from Sri Lanka, delivered fresh to Australia</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="breadcrumb" style="padding-left:0">
+      <a href="#">Home</a> <span>›</span> <strong>All Gifts</strong>
+    </div>
+
+    <div class="pill-bar">
+      <div class="pill active">All</div>
+      <div class="pill">🌹 Flowers</div>
+      <div class="pill">🎂 Cakes</div>
+      <div class="pill">🍫 Chocolates</div>
+      <div class="pill">🎁 Custom Gifts</div>
+      <div class="pill">🧺 Hampers</div>
+      <div class="pill">🌸 Combos</div>
+    </div>
+
+    <div class="gifts-layout">
+      <!-- Sidebar -->
+      <div class="filter-panel">
+        <div class="filter-title">Filters</div>
+
+        <div class="filter-group-label">Category</div>
+        <label class="filter-check"><input type="checkbox" checked> All Flowers</label>
+        <label class="filter-check"><input type="checkbox"> Roses</label>
+        <label class="filter-check"><input type="checkbox"> Orchids</label>
+        <label class="filter-check"><input type="checkbox"> Bouquets</label>
+        <label class="filter-check"><input type="checkbox"> Flower Boxes</label>
+
+        <hr class="filter-sep">
+        <div class="filter-group-label">Cakes</div>
+        <label class="filter-check"><input type="checkbox"> Chocolate</label>
+        <label class="filter-check"><input type="checkbox"> Birthday</label>
+        <label class="filter-check"><input type="checkbox"> Fruit Cakes</label>
+        <label class="filter-check"><input type="checkbox"> Custom Cakes</label>
+
+        <hr class="filter-sep">
+        <div class="filter-group-label">Price (AUD)</div>
+        <div class="price-row">
+          <input class="price-input" type="number" placeholder="Min $0">
+          <input class="price-input" type="number" placeholder="Max $250">
+        </div>
+
+        <hr class="filter-sep">
+        <div class="filter-group-label">Delivery</div>
+        <label class="filter-check"><input type="checkbox" checked> Same Day</label>
+        <label class="filter-check"><input type="checkbox"> Express</label>
+        <label class="filter-check"><input type="checkbox"> Scheduled</label>
+
+        <hr class="filter-sep">
+        <div class="filter-group-label">Occasion</div>
+        <label class="filter-check"><input type="checkbox"> Birthday</label>
+        <label class="filter-check"><input type="checkbox"> Anniversary</label>
+        <label class="filter-check"><input type="checkbox"> Mother's Day</label>
+        <label class="filter-check"><input type="checkbox"> Valentine's</label>
+        <label class="filter-check"><input type="checkbox"> Get Well</label>
+
+        <hr class="filter-sep">
+        <button class="btn-red" style="width:100%;justify-content:center;margin-top:4px">Apply Filters</button>
+        <button class="btn-outline" style="width:100%;justify-content:center;margin-top:8px">Clear All</button>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <div class="gifts-topbar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" placeholder="Search gifts, flowers, cakes…">
+          </div>
+          <select class="sort-select">
+            <option>Sort: Popular</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest First</option>
+            <option>Best Rated</option>
+          </select>
+        </div>
+        <p class="result-count">Showing <strong>48</strong> of 500+ gifts</p>
+
+        <div class="gift-grid">
+          <!-- Card 1 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🌹<span class="gift-card-badge tag tag-red">Best Seller</span><span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★★</span> 4.9 (2,480)</div>
+              <div class="gift-card-name">Classic Red Roses Bouquet</div>
+              <div class="gift-card-sub">12 fresh red roses · Same day</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$65 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🎂<span class="gift-card-badge tag tag-gold">New</span><span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★★</span> 4.8 (1,820)</div>
+              <div class="gift-card-name">Chocolate Fudge Cake</div>
+              <div class="gift-card-sub">1kg · Eggless option · Express</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$49 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🧺<span class="gift-card-badge tag tag-green">Trending</span><span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★★</span> 4.9 (980)</div>
+              <div class="gift-card-name">Luxury Gift Hamper</div>
+              <div class="gift-card-sub">Chocolates + Wine + Flowers</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$129 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🍫<span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★☆</span> 4.7 (1,240)</div>
+              <div class="gift-card-name">Belgian Chocolate Box</div>
+              <div class="gift-card-sub">24 pcs · Handcrafted · Assorted</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$39 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 5 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">💐<span class="gift-card-badge tag tag-red">Sale</span><span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★★</span> 4.9 (3,100)</div>
+              <div class="gift-card-name">Mixed Orchids Arrangement</div>
+              <div class="gift-card-sub">Purple & white orchids · Vase included</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$79 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 6 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🎁<span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★☆</span> 4.6 (670)</div>
+              <div class="gift-card-name">Birthday Surprise Combo</div>
+              <div class="gift-card-sub">Cake + Roses + Balloon setup</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$89 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 7 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🌸<span class="gift-card-badge tag tag-gold">Popular</span><span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★★</span> 4.8 (2,050)</div>
+              <div class="gift-card-name">Pink Flower Box</div>
+              <div class="gift-card-sub">30 stems · Premium box · Same day</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$55 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+          <!-- Card 8 -->
+          <div class="gift-card" onclick="showPage('detail')">
+            <div class="gift-card-img">🫐<span class="gift-card-fav">♡</span></div>
+            <div class="gift-card-body">
+              <div class="gift-rating"><span>★★★★☆</span> 4.5 (430)</div>
+              <div class="gift-card-name">Fresh Fruit Cake</div>
+              <div class="gift-card-sub">Seasonal fruits · 1.5kg · Custom</div>
+              <div class="gift-card-footer">
+                <div class="gift-card-price">$59 <span>AUD</span></div>
+                <button class="gift-card-add">+</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;padding:24px 0">
+          <button class="btn-outline">Load More Gifts (452 remaining)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Lanka<span>ToAus</span></div>
+          <p class="footer-tagline">Bridging hearts between Sri Lanka and Australia with love, freshness, and beautiful gifts — delivered right to their door.</p>
+          <div class="footer-flags">🇱🇰 <span style="font-size:14px;color:rgba(255,255,255,.4)">→</span> 🇦🇺</div>
+        </div>
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Support</div>
+          <ul class="footer-links">
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Returns Policy</a></li>
+            <li><a href="#">Delivery Info</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Stay Updated</div>
+          <p style="font-size:13px;margin-bottom:8px">Get exclusive offers and gift ideas in your inbox.</p>
+          <div class="footer-sub-input">
+            <input type="email" placeholder="your@email.com">
+            <button>Subscribe</button>
+          </div>
+          <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:8px">No spam, unsubscribe anytime.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 LankaToAus. All rights reserved. ❤️</span>
+        <div class="footer-badges">
+          <span class="footer-badge">🔒 SSL Secure</span>
+          <span class="footer-badge">📦 Tracked Delivery</span>
+          <span class="footer-badge">⭐ 4.9 Rated</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  PAGE: GIFT DETAIL                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-detail">
+  <div class="container">
+    <div class="breadcrumb" style="padding-left:0">
+      <a href="#" onclick="showPage('gifts')">All Gifts</a> <span>›</span> <a href="#" onclick="showPage('gifts')">Flowers</a> <span>›</span> <strong>Classic Red Roses Bouquet</strong>
+    </div>
+
+    <div class="detail-layout">
+      <!-- Gallery -->
+      <div>
+        <div class="detail-gallery">
+          <div class="detail-main-img">🌹</div>
+          <div class="detail-thumbs">
+            <div class="detail-thumb active">🌹</div>
+            <div class="detail-thumb">💐</div>
+            <div class="detail-thumb">🎀</div>
+            <div class="detail-thumb">📦</div>
+          </div>
+        </div>
+
+        <div class="notice-bar" style="margin-top:16px">
+          🚚 <span><strong>Same Day Delivery Available</strong> — Order before 2:00 PM today</span>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="detail-info">
+        <div class="detail-tags">
+          <span class="tag tag-red">Best Seller</span>
+          <span class="tag tag-green">Same Day Delivery</span>
+          <span class="tag tag-gold">Fresh Guaranteed</span>
+        </div>
+        <h1 class="detail-name">Classic Red Roses Bouquet</h1>
+        <div class="detail-rating">
+          <span class="stars">★★★★★</span>
+          <strong>4.9</strong>
+          <span>· 2,480 reviews · 2,500+ sold</span>
+        </div>
+        <div class="detail-price-row">
+          <span class="detail-price">$65 AUD</span>
+          <span class="detail-price-old">$79 AUD</span>
+          <span class="tag tag-red">18% off</span>
+        </div>
+        <p class="detail-desc">A classic expression of love — 12 hand-selected red roses, freshly sourced from Sri Lanka's finest growers and delivered to your loved one in Australia. Each stem is carefully prepared, wrapped in luxury paper, and tied with a signature satin ribbon.</p>
+
+        <div class="detail-opts">
+          <div class="detail-opt-label">Bouquet Size</div>
+          <div class="detail-opt-row">
+            <div class="detail-opt">6 Roses – $42</div>
+            <div class="detail-opt active">12 Roses – $65</div>
+            <div class="detail-opt">24 Roses – $115</div>
+            <div class="detail-opt">36 Roses – $169</div>
+          </div>
+
+          <div class="detail-opt-label">Delivery Type</div>
+          <div class="detail-opt-row">
+            <div class="detail-opt active">Same Day ⚡</div>
+            <div class="detail-opt">Express (2–4 hrs)</div>
+            <div class="detail-opt">Scheduled Date</div>
+          </div>
+
+          <div class="detail-opt-label">Add-ons</div>
+          <div class="detail-opt-row">
+            <div class="detail-opt">+ Greeting Card $5</div>
+            <div class="detail-opt active">+ Chocolates $15</div>
+            <div class="detail-opt">+ Balloon $8</div>
+            <div class="detail-opt">+ Plush Bear $18</div>
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px">
+          <div class="detail-opt-label">Quantity</div>
+          <div class="detail-qty">
+            <button class="qty-btn">−</button>
+            <span class="qty-val">1</span>
+            <button class="qty-btn">+</button>
+          </div>
+        </div>
+
+        <div class="detail-actions">
+          <button class="btn-red" style="justify-content:center;padding:15px">🛒 Add to Cart — $65 AUD</button>
+          <button class="btn-gold" style="justify-content:center;padding:14px">⚡ Buy Now with Surprise Delivery</button>
+          <button class="btn-outline" style="justify-content:center">♡ Save to Wishlist</button>
+        </div>
+
+        <div class="detail-meta">
+          <div class="detail-meta-row"><span>📍</span><span>Delivering to <strong>Sydney, Melbourne, Brisbane, Perth</strong> + 11 more cities</span></div>
+          <div class="detail-meta-row"><span>🕐</span><span>Order before <strong>2:00 PM</strong> for same-day delivery today</span></div>
+          <div class="detail-meta-row"><span>🌿</span><span>Always <strong>fresh & hand-arranged</strong> at dispatch</span></div>
+          <div class="detail-meta-row"><span>↩️</span><span><strong>Full refund</strong> if flowers not fresh on arrival</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div style="padding-bottom:48px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:26px;margin-bottom:20px">Customer Reviews</h2>
+      <div class="stats-bar" style="max-width:500px">
+        <div class="stat-block"><div class="stat-num">4.9</div><div class="stat-lbl">Avg. Rating</div></div>
+        <div class="stat-block"><div class="stat-num">2,480</div><div class="stat-lbl">Total Reviews</div></div>
+        <div class="stat-block"><div class="stat-num">98%</div><div class="stat-lbl">Recommend</div></div>
+      </div>
+      <div class="gift-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+        <div style="background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="width:38px;height:38px;background:var(--red-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--red)">SW</div>
+            <div><div style="font-weight:600;font-size:14px">Sarah Wijesinghe</div><div style="font-size:12px;color:var(--muted)">Colombo → Sydney · 2 days ago</div></div>
+          </div>
+          <div style="color:var(--gold);margin-bottom:8px;font-size:14px">★★★★★</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.75">My sister absolutely loved the roses! They arrived so fresh and beautifully wrapped. The surprise delivery made it extra special. 10/10!</p>
+        </div>
+        <div style="background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="width:38px;height:38px;background:var(--gold-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#a06a10">MP</div>
+            <div><div style="font-weight:600;font-size:14px">Michael Perera</div><div style="font-size:12px;color:var(--muted)">Kandy → Melbourne · 1 week ago</div></div>
+          </div>
+          <div style="color:var(--gold);margin-bottom:8px;font-size:14px">★★★★★</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.75">Tracked the delivery in real-time — arrived exactly on time. The roses were stunning, exactly as pictured. Brilliant service!</p>
+        </div>
+        <div style="background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <div style="width:38px;height:38px;background:var(--green-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--green)">PK</div>
+            <div><div style="font-weight:600;font-size:14px">Priya Krishnan</div><div style="font-size:12px;color:var(--muted)">Jaffna → Sydney · 2 weeks ago</div></div>
+          </div>
+          <div style="color:var(--gold);margin-bottom:8px;font-size:14px">★★★★★</div>
+          <p style="font-size:13px;color:var(--mid);line-height:1.75">Made our anniversary special across 10,000km. The add-on chocolates were a perfect touch. Will definitely order again!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Lanka<span>ToAus</span></div>
+          <p class="footer-tagline">Bridging hearts between Sri Lanka and Australia with love and gifts.</p>
+          <div class="footer-flags">🇱🇰 <span style="font-size:14px;color:rgba(255,255,255,.4)">→</span> 🇦🇺</div>
+        </div>
+        <div><div class="footer-col-title">Quick Links</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">Contact</a></li><li><a href="#">FAQs</a></li></ul></div>
+        <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="#">Help Center</a></li><li><a href="#">Returns Policy</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+        <div><div class="footer-col-title">Stay Updated</div><div class="footer-sub-input"><input type="email" placeholder="your@email.com"><button>Go</button></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 LankaToAus. All rights reserved. ❤️</span><div class="footer-badges"><span class="footer-badge">🔒 SSL Secure</span><span class="footer-badge">⭐ 4.9 Rated</span></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  PAGE: OCCASIONS                              -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-occasions">
+  <div class="occ-hero">
+    <div class="sec-label">🎉 Every Celebration</div>
+    <h1 class="sec-title">Shop by Occasion</h1>
+    <p class="sec-sub">Find the perfect gift for every milestone — from everyday moments to life's biggest celebrations</p>
+  </div>
+
+  <div class="container">
+    <div class="stats-bar" style="margin-top:32px">
+      <div class="stat-block"><div class="stat-num">15K+</div><div class="stat-lbl">Occasions Celebrated</div></div>
+      <div class="stat-block"><div class="stat-num">500+</div><div class="stat-lbl">Gift Options</div></div>
+      <div class="stat-block"><div class="stat-num">4.9</div><div class="stat-lbl">Average Rating</div></div>
+      <div class="stat-block"><div class="stat-num">15</div><div class="stat-lbl">Cities in Australia</div></div>
+    </div>
+
+    <div style="margin-top:32px">
+      <div class="sec-label">🔥 Coming Up This Month</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:26px;margin-bottom:6px">Upcoming Occasions</h2>
+      <p class="sec-sub" style="margin-bottom:24px">Don't miss these special dates — plan ahead and ensure timely delivery</p>
+      <div class="pill-bar">
+        <div class="pill active">All Occasions</div>
+        <div class="pill">Seasonal</div>
+        <div class="pill">Religious</div>
+        <div class="pill">Personal</div>
+        <div class="pill">Cultural</div>
+      </div>
+    </div>
+
+    <div class="occ-grid">
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🎂</span>
+        <div class="occ-name">Birthday</div>
+        <div class="occ-count">200+ gifts · Most popular</div>
+        <div class="occ-date">Every day</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">💑</span>
+        <div class="occ-name">Anniversary</div>
+        <div class="occ-count">85+ gifts · 5K+ celebrated</div>
+        <div class="occ-date">Year round</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">❤️</span>
+        <div class="occ-name">Valentine's Day</div>
+        <div class="occ-count">65+ gifts · 3K+ deliveries</div>
+        <div class="occ-date">February 14</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🌹</span>
+        <div class="occ-name">Mother's Day</div>
+        <div class="occ-count">90+ gifts · Top occasion</div>
+        <div class="occ-date">May 12, 2026</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">👔</span>
+        <div class="occ-name">Father's Day</div>
+        <div class="occ-count">55+ gifts</div>
+        <div class="occ-date">September 1</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">💒</span>
+        <div class="occ-name">Wedding</div>
+        <div class="occ-count">70+ gifts · Custom options</div>
+        <div class="occ-date">All year</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">👶</span>
+        <div class="occ-name">New Baby</div>
+        <div class="occ-count">40+ gifts · Welcome bundles</div>
+        <div class="occ-date">Any time</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🤒</span>
+        <div class="occ-name">Get Well Soon</div>
+        <div class="occ-count">35+ gifts · Care packages</div>
+        <div class="occ-date">Anytime</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🎓</span>
+        <div class="occ-name">Graduation</div>
+        <div class="occ-count">30+ gifts</div>
+        <div class="occ-date">June – August</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🏠</span>
+        <div class="occ-name">Housewarming</div>
+        <div class="occ-count">25+ gift hampers</div>
+        <div class="occ-date">All year</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')" style="border:2px dashed var(--gold);background:var(--gold-lt)">
+        <span class="occ-icon">☪️</span>
+        <div class="occ-name">Ramadan</div>
+        <div class="occ-count">Special collections</div>
+        <div class="occ-date" style="color:var(--red)">Shop Now ›</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')" style="border:2px dashed var(--gold);background:var(--gold-lt)">
+        <span class="occ-icon">🎊</span>
+        <div class="occ-name">Sinhala & Tamil New Year</div>
+        <div class="occ-count">Traditional packages</div>
+        <div class="occ-date" style="color:var(--red)">April 2026</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🎁</span>
+        <div class="occ-name">Just Because</div>
+        <div class="occ-count">150+ spontaneous gifts</div>
+        <div class="occ-date">No reason needed</div>
+      </a>
+      <a class="occ-card" href="#" onclick="showPage('gifts')">
+        <span class="occ-icon">🙏</span>
+        <div class="occ-name">Thank You</div>
+        <div class="occ-count">45+ appreciation gifts</div>
+        <div class="occ-date">Any day</div>
+      </a>
+    </div>
+
+    <div style="text-align:center;padding:32px 0 48px">
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Can't find your occasion? We handle custom orders too!</p>
+      <button class="btn-red">📞 Contact Us for Custom Orders</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div><div class="footer-brand">Lanka<span>ToAus</span></div><p class="footer-tagline">Bridging hearts between Sri Lanka and Australia.</p><div class="footer-flags">🇱🇰 <span style="font-size:14px;color:rgba(255,255,255,.4)">→</span> 🇦🇺</div></div>
+        <div><div class="footer-col-title">Quick Links</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">FAQs</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="#">Help Center</a></li><li><a href="#">Returns</a></li><li><a href="#">Privacy</a></li></ul></div>
+        <div><div class="footer-col-title">Newsletter</div><div class="footer-sub-input"><input type="email" placeholder="your@email.com"><button>Go</button></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 LankaToAus. All rights reserved. ❤️</span><div class="footer-badges"><span class="footer-badge">🔒 Secure</span><span class="footer-badge">⭐ 4.9</span></div></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  PAGE: HOW IT WORKS                           -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-howit">
+  <div class="how-hero">
+    <div class="container" style="max-width:620px">
+      <div class="sec-label">✨ Simple Process</div>
+      <h1 class="sec-title" style="font-size:42px">How It Works</h1>
+      <p class="sec-sub" style="font-size:16px">Sending love across the ocean has never been this easy. Three steps, and they'll be smiling.</p>
+    </div>
+  </div>
+
+  <div class="steps-section">
+    <div class="container">
+      <div class="step-row">
+        <div class="step-visual">
+          <div class="step-number-big">01</div>
+          <div class="step-emoji">🛍️</div>
+        </div>
+        <div class="step-content">
+          <div class="step-num">Step 01</div>
+          <h2 class="step-title">Choose Your Gift</h2>
+          <p class="step-desc">Browse our curated collection of 500+ gifts — from vibrant Sri Lankan flowers to decadent chocolates and personalised keepsakes. Filter by occasion, budget, or category to find the perfect match.</p>
+          <ul class="step-bullets">
+            <li>500+ gifts across all categories</li>
+            <li>Filter by occasion, price, and delivery speed</li>
+            <li>Read real verified reviews from customers</li>
+            <li>Add personalised cards and messages</li>
+          </ul>
+          <div style="display:flex;gap:10px;margin-top:20px">
+            <button class="btn-red" onclick="showPage('gifts')">Browse Gifts →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-row reverse">
+        <div class="step-visual">
+          <div class="step-number-big">02</div>
+          <div class="step-emoji">📍</div>
+        </div>
+        <div class="step-content">
+          <div class="step-num">Step 02</div>
+          <h2 class="step-title">Choose Delivery Details</h2>
+          <p class="step-desc">Enter the recipient's address anywhere in Australia. Choose a delivery date and time that works for them — or opt for our famous surprise delivery where we keep the sender a secret!</p>
+          <ul class="step-bullets">
+            <li>15+ cities across Australia covered</li>
+            <li>Same-day delivery available in major cities</li>
+            <li>Schedule delivery up to 30 days in advance</li>
+            <li>Surprise delivery — sender stays anonymous</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-row">
+        <div class="step-visual">
+          <div class="step-number-big">03</div>
+          <div class="step-emoji">🎉</div>
+        </div>
+        <div class="step-content">
+          <div class="step-num">Step 03</div>
+          <h2 class="step-title">They Receive & You Track</h2>
+          <p class="step-desc">Your gift is hand-prepared and dispatched fresh. Track delivery in real-time — you'll get notifications at every stage. When the doorbell rings, watch their face light up!</p>
+          <ul class="step-bullets">
+            <li>Live GPS tracking with ETA updates</li>
+            <li>Delivery photo confirmation</li>
+            <li>SMS & email notifications at every step</li>
+            <li>Fresh guarantee — full refund if unsatisfied</li>
+          </ul>
+          <div style="display:flex;gap:10px;margin-top:20px">
+            <button class="btn-red" onclick="showPage('track')">Track an Order →</button>
+            <button class="btn-outline" onclick="showPage('gifts')">Start Sending</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;padding:16px 0 8px">
+        <div class="stats-bar">
+          <div class="stat-block"><div class="stat-num">10K+</div><div class="stat-lbl">Happy Deliveries</div></div>
+          <div class="stat-block"><div class="stat-num">4.9</div><div class="stat-lbl">Average Rating</div></div>
+          <div class="stat-block"><div class="stat-num">2–4h</div><div class="stat-lbl">Avg. Delivery</div></div>
+          <div class="stat-block"><div class="stat-num">98%</div><div class="stat-lbl">On-time Rate</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="faq-section">
+    <div class="container">
+      <div style="text-align:center;max-width:520px;margin:0 auto 8px">
+        <div class="sec-label">💬 Got Questions?</div>
+        <h2 class="sec-title" style="font-size:32px">Frequently Asked</h2>
+        <p class="sec-sub">Everything you need to know about sending gifts across borders.</p>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">How long does delivery take? <span class="arrow">⌄</span></div>
+          <div class="faq-a">Same-day delivery is available in Sydney, Melbourne, Brisbane, and Perth for orders placed before 2:00 PM. For other cities, express delivery typically takes 2–6 hours. Scheduled deliveries can be booked up to 30 days in advance.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Are the flowers guaranteed to be fresh? <span class="arrow">⌄</span></div>
+          <div class="faq-a">Absolutely. Every bouquet is hand-arranged fresh on the day of dispatch. We offer a 100% freshness guarantee — if your recipient receives wilted flowers, we'll send a full replacement or issue a refund immediately.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">Can I keep my identity as a surprise? <span class="arrow">⌄</span></div>
+          <div class="faq-a">Yes! Our "Surprise Delivery" option lets you remain anonymous. The recipient receives the gift without any indication of who sent it — unless you choose to include a card with your name.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What cities in Australia do you deliver to? <span class="arrow">⌄</span></div>
+          <div class="faq-a">We currently deliver to Sydney, Melbourne, Brisbane, Perth, Adelaide, Canberra, Hobart, Darwin, Gold Coast, Sunshine Coast, Newcastle, Wollongong, Geelong, Townsville, and Cairns. More cities coming soon!</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">How do I track my order? <span class="arrow">⌄</span></div>
+          <div class="faq-a">After placing your order, you'll receive a unique tracking ID via SMS and email. Visit our Track Order page and enter your order number to see real-time status updates, including a live map view of your delivery driver.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept? <span class="arrow">⌄</span></div>
+          <div class="faq-a">We accept all major credit and debit cards (Visa, Mastercard, Amex), PayPal, Apple Pay, and Google Pay. All transactions are SSL-secured and processed by Stripe.</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:32px;padding-bottom:16px">
+        <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Still have questions? Our team is available 7 days a week.</p>
+        <button class="btn-red">💬 Chat with Us Now</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div><div class="footer-brand">Lanka<span>ToAus</span></div><p class="footer-tagline">Bridging hearts between Sri Lanka and Australia.</p><div class="footer-flags">🇱🇰 → 🇦🇺</div></div>
+        <div><div class="footer-col-title">Quick Links</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">FAQs</a></li><li><a href="#">Blog</a></li></ul></div>
+        <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="#">Help Center</a></li><li><a href="#">Returns</a></li><li><a href="#">Privacy</a></li></ul></div>
+        <div><div class="footer-col-title">Newsletter</div><div class="footer-sub-input"><input type="email" placeholder="your@email.com"><button>Go</button></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 LankaToAus. All rights reserved. ❤️</span></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════════════════ -->
+<!--  PAGE: TRACK ORDER                            -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="page" id="page-track">
+  <div class="track-hero">
+    <div class="sec-label" style="color:var(--gold)">📦 Real-Time Tracking</div>
+    <h1 class="sec-title">Track Your Order</h1>
+    <p class="sec-sub">Enter your order number to get live updates on your delivery status.</p>
+  </div>
+
+  <div class="container" style="padding-bottom:12px">
+    <div class="track-box">
+      <div style="font-weight:700;font-size:16px;margin-bottom:4px">Enter Tracking Details</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:14px">Your order number is in your confirmation email or SMS</div>
+      <div class="track-input-row">
+        <input class="track-input" type="text" placeholder="e.g. LTA-2026-XXXXXX" id="track-input">
+        <button class="btn-red" onclick="showTrackResult()">Track →</button>
+      </div>
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)">
+        <span>Try demo:</span>
+        <button onclick="document.getElementById('track-input').value='LTA-2026-048291';showTrackResult()" style="background:var(--cream);border:1px solid var(--border);padding:5px 12px;border-radius:30px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--red);font-weight:600">LTA-2026-048291</button>
+        <button onclick="document.getElementById('track-input').value='LTA-2026-039847';showTrackResult()" style="background:var(--cream);border:1px solid var(--border);padding:5px 12px;border-radius:30px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--red);font-weight:600">LTA-2026-039847</button>
+      </div>
+    </div>
+
+    <div class="track-result" id="track-result">
+      <div class="track-card">
+        <div class="track-card-header">
+          <div>
+            <div class="track-card-id" id="tr-id">Order #LTA-2026-048291</div>
+            <div class="track-card-name" id="tr-name">Classic Red Roses Bouquet × 1</div>
+            <div style="font-size:12px;opacity:.7;margin-top:2px" id="tr-dest">📍 Delivering to: 14 Parramatta Rd, Sydney NSW 2000</div>
+          </div>
+          <div class="track-status-badge" id="tr-badge">Out for Delivery</div>
+        </div>
+        <div class="track-card-body">
+          <div class="delivery-eta">
+            <span class="eta-icon">🛵</span>
+            <div>
+              <div class="eta-label">Estimated Arrival</div>
+              <div class="eta-time" id="tr-eta">Today at 3:45 PM — approx. 18 minutes away</div>
+            </div>
+          </div>
+
+          <div style="margin:20px 0 4px;font-weight:700;font-size:13px">Delivery Timeline</div>
+
+          <div class="track-timeline" style="margin-top:16px">
+            <div class="track-step done">
+              <div class="track-dot">✓</div>
+              <div class="track-step-info">
+                <div class="track-step-title">Order Confirmed</div>
+                <div class="track-step-desc">Payment received and order accepted</div>
+                <div class="track-step-time">Today, 11:02 AM</div>
+              </div>
+            </div>
+            <div class="track-step done">
+              <div class="track-dot">✓</div>
+              <div class="track-step-info">
+                <div class="track-step-title">Gift Prepared</div>
+                <div class="track-step-desc">Bouquet hand-arranged and quality checked</div>
+                <div class="track-step-time">Today, 12:35 PM</div>
+              </div>
+            </div>
+            <div class="track-step done">
+              <div class="track-dot">✓</div>
+              <div class="track-step-info">
+                <div class="track-step-title">Picked Up by Driver</div>
+                <div class="track-step-desc">Driver: Kamal P. · Pickup confirmed</div>
+                <div class="track-step-time">Today, 2:50 PM</div>
+              </div>
+            </div>
+            <div class="track-step current">
+              <div class="track-dot">🛵</div>
+              <div class="track-step-info">
+                <div class="track-step-title">Out for Delivery</div>
+                <div class="track-step-desc">Your gift is on its way — 18 minutes away!</div>
+                <div class="track-step-time">Now</div>
+              </div>
+            </div>
+            <div class="track-step">
+              <div class="track-dot" style="color:var(--muted)">○</div>
+              <div class="track-step-info">
+                <div class="track-step-title" style="color:var(--muted)">Delivered</div>
+                <div class="track-step-desc" style="color:var(--muted)">Awaiting delivery confirmation</div>
+                <div class="track-step-time">Est. 3:45 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="track-map-placeholder">
+            <div style="font-size:28px">🗺️</div>
+            <div style="font-size:13px;font-weight:600">Live Map</div>
+            <div style="font-size:12px">Real-time GPS tracking available in the app</div>
+            <button style="margin-top:8px;background:var(--red);color:#fff;border:none;padding:7px 16px;border-radius:var(--radius-sm);font-family:inherit;font-size:12px;cursor:pointer;font-weight:600">Open in App</button>
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:10px">
+            <button class="btn-outline" style="flex:1;justify-content:center;font-size:13px">📞 Call Driver</button>
+            <button class="btn-outline" style="flex:1;justify-content:center;font-size:13px">💬 Message Support</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);padding:20px;margin-top:16px">
+        <div style="font-weight:700;font-size:14px;margin-bottom:12px">Order Summary</div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--mid);margin-bottom:8px"><span>Classic Red Roses Bouquet (12 stems)</span><span>$65.00</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--mid);margin-bottom:8px"><span>Add-on: Belgian Chocolates</span><span>$15.00</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--mid);margin-bottom:8px"><span>Express Delivery</span><span>$9.00</span></div>
+        <div style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px;display:flex;justify-content:space-between;font-weight:700;font-size:15px"><span>Total</span><span style="color:var(--red)">$89.00 AUD</span></div>
+      </div>
+    </div>
+
+    <div style="padding:40px 0 48px;text-align:center" id="track-cta">
+      <p style="color:var(--muted);font-size:14px;margin-bottom:20px">Don't have an order yet?</p>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button class="btn-red" onclick="showPage('gifts')">🎁 Send a Gift Now</button>
+        <button class="btn-outline" onclick="showPage('howit')">How It Works</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div><div class="footer-brand">Lanka<span>ToAus</span></div><p class="footer-tagline">Bridging hearts between Sri Lanka and Australia.</p><div class="footer-flags">🇱🇰 → 🇦🇺</div></div>
+        <div><div class="footer-col-title">Quick Links</div><ul class="footer-links"><li><a href="#">About Us</a></li><li><a href="#">FAQs</a></li></ul></div>
+        <div><div class="footer-col-title">Support</div><ul class="footer-links"><li><a href="#">Help Center</a></li><li><a href="#">Contact</a></li></ul></div>
+        <div><div class="footer-col-title">Newsletter</div><div class="footer-sub-input"><input type="email" placeholder="your@email.com"><button>Go</button></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 LankaToAus. All rights reserved. ❤️</span></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+
+function showTrackResult() {
+  const val = document.getElementById('track-input').value.trim();
+  if (!val) return;
+  const result = document.getElementById('track-result');
+  result.classList.add('show');
+  const orders = {
+    'LTA-2026-039847': {
+      name: 'Luxury Gift Hamper × 1',
+      dest: '📍 Delivering to: 8 Collins St, Melbourne VIC 3000',
+      badge: 'Delivered ✓',
+      eta: 'Delivered today at 1:22 PM'
+    }
+  };
+  const data = orders[val] || null;
+  if (data) {
+    document.getElementById('tr-id').textContent = 'Order #' + val;
+    document.getElementById('tr-name').textContent = data.name;
+    document.getElementById('tr-dest').textContent = data.dest;
+    document.getElementById('tr-badge').textContent = data.badge;
+    document.getElementById('tr-eta').textContent = data.eta;
+  } else {
+    document.getElementById('tr-id').textContent = 'Order #' + val;
+  }
+  result.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
+// Pill filter toggle
+document.querySelectorAll('.pill').forEach(p => {
+  p.addEventListener('click', function() {
+    this.closest('.pill-bar').querySelectorAll('.pill').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Qty buttons
+document.querySelectorAll('.qty-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const valEl = this.closest('.detail-qty').querySelector('.qty-val');
+    let v = parseInt(valEl.textContent);
+    if (this.textContent === '+') v = Math.min(v + 1, 10);
+    else v = Math.max(v - 1, 1);
+    valEl.textContent = v;
+  });
+});
+
+// Detail opt toggle
+document.querySelectorAll('.detail-opt').forEach(opt => {
+  opt.addEventListener('click', function() {
+    const row = this.closest('.detail-opt-row');
+    row.querySelectorAll('.detail-opt').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Thumb toggle
+document.querySelectorAll('.detail-thumb').forEach(t => {
+  t.addEventListener('click', function() {
+    this.closest('.detail-thumbs').querySelectorAll('.detail-thumb').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+    const emojis = ['🌹','💐','🎀','📦'];
+    const idx = Array.from(this.parentElement.children).indexOf(this);
+    this.closest('.detail-gallery').querySelector('.detail-main-img').textContent = emojis[idx] || '🌹';
+  });
+});
+</script>
+</body>
+</html>
