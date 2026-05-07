@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en" class="font-sans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>All Gifts - LankaToAus</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+  
+  body{
+  font-family:'DM Sans',sans-serif;
+}
+
+h1,h2,h3,h4{
+  font-family:'Playfair Display',serif;
+}
+    body{
+      background:#fffaf6;
+      color:#1a0a00;
+    }
+
+    .gift-card{
+      background:#fff;
+      border:1px solid #f5e2d6;
+      border-radius:24px;
+      overflow:hidden;
+      transition:all .3s ease;
+      position:relative;
+    }
+
+    .gift-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 40px rgba(200,98,42,.12);
+      border-color:#c8622a;
+    }
+
+    .gift-image{
+      height:260px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .gift-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s ease;
+    }
+
+    .gift-card:hover img{
+      transform:scale(1.08);
+    }
+
+    .gift-tag{
+      position:absolute;
+      top:16px;
+      left:16px;
+      background:#fff;
+      color:#c8622a;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:600;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .gift-content{
+      padding:22px;
+    }
+
+    .gift-price{
+      color:#c8622a;
+      font-size:24px;
+      font-weight:700;
+    }
+
+    .gift-btn{
+      width:100%;
+      margin-top:18px;
+      background:#c8622a;
+      color:#fff;
+      padding:14px;
+      border-radius:14px;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .gift-btn:hover{
+      background:#b5531e;
+    }
+
+    .filter-btn{
+      background:#fff;
+      border:1px solid #f0dece;
+      padding:12px 20px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:500;
+      transition:.25s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:#c8622a;
+      color:#fff;
+      border-color:#c8622a;
+    }
+
+    .page-hero{
+      background:
+      radial-gradient(circle at top left, rgba(200,98,42,.08), transparent 40%),
+      linear-gradient(to bottom right,#fff7f1,#fffaf7);
+    }
+  </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-[#fffaf6]">
+
+  <!-- TOP BAR -->
+  <div class="bg-[#2b0d00] text-white text-sm">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+
+      <span class="font-medium tracking-wide">
+        🇦🇺 Fast delivery across Australia · 🇱🇰 Sourced from Sri Lanka
+      </span>
+
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-orange-300 transition">Help</a>
+        <a href="#" class="hover:text-orange-300 transition">Track Order</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN BAR -->
+  <div class="bg-[#fffaf6] border-b border-orange-100">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex items-center gap-6 py-4">
+
+        <!-- LOGO -->
+        <a href="/" class="flex items-center gap-4 shrink-0">
+
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-2xl shadow-lg">
+            🎁
+          </div>
+
+          <div>
+            <h2 class="text-3xl font-bold leading-none text-[#1a0a00]">
+              LankaToAus
+            </h2>
+
+            <p class="text-sm text-gray-500 mt-1">
+              Send Love Across Borders
+            </p>
+          </div>
+
+        </a>
+
+        <!-- SEARCH -->
+        <div class="flex-1 hidden lg:block">
+
+          <div class="relative">
+
+            <input
+              type="text"
+              placeholder="Search gifts, occasions, or recipients..."
+              class="w-full h-14 rounded-full border border-orange-200 bg-[#fff5ef] px-6 pl-14 text-[15px] focus:outline-none focus:border-[#c8622a]"
+            >
+
+            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-[#c8622a]">
+              🔍
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex items-center gap-4 shrink-0">
+
+          <button class="text-2xl text-[#5c3010] hover:text-[#c8622a] transition">
+            ♡
+          </button>
+
+          <button class="relative text-2xl text-[#5c3010] hover:text-[#c8622a] transition">
+            🛒
+
+            <span class="absolute -top-1 -right-2 bg-[#c8622a] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
+              3
+            </span>
+          </button>
+
+          <button class="hidden md:block border border-orange-300 text-[#c8622a] px-6 h-11 rounded-xl font-semibold hover:bg-orange-50 transition">
+            Login
+          </button>
+
+          <button class="hidden md:block bg-[#c8622a] text-white px-6 h-11 rounded-xl font-semibold hover:bg-[#b5531e] transition">
+            Sign Up
+          </button>
+
+          <button class="text-2xl text-[#5c3010]">
+            ☰
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- NAV -->
+      <div class="hidden md:flex items-center gap-8 py-4 text-[16px] font-medium">
+
+        <a href="/" class="bg-orange-100 text-[#c8622a] px-4 py-2 rounded-xl">
+          Home
+        </a>
+
+        <a href="#" class="text-[#1a0a00] hover:text-[#c8622a] transition">
+          All Gifts
+        </a>
+
+        <a href="#" class="hover:text-[#c8622a] transition">
+          Occasions
+        </a>
+
+        <a href="#" class="hover:text-[#c8622a] transition">
+          How It Works
+        </a>
+
+        <a href="#" class="hover:text-[#c8622a] transition">
+          Track Order
+        </a>
+
+        <button class="flex items-center gap-2 hover:text-[#c8622a] transition">
+          Categories
+          <span>⌄</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ROUTE BAR -->
+  <div class="bg-[#2b0d00] text-white">
+
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-center gap-5 text-sm">
+
+      <span class="opacity-70">LK</span>
+
+      <span class="font-medium">Sri Lanka</span>
+
+      <span class="text-orange-300">→</span>
+
+      <span class="font-medium">Australia</span>
+
+      <span class="opacity-70">AU</span>
+
+      <div class="flex gap-3 ml-5">
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Sydney
+        </span>
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Melbourne
+        </span>
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Brisbane
+        </span>
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Perth
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+<!-- OCCASIONS HERO -->
+<section class="page-hero py-24 relative overflow-hidden">
+
+  <div class="container mx-auto px-4 relative z-10">
+
+    <div class="max-w-3xl mx-auto text-center">
+
+      <span class="inline-flex items-center gap-2 bg-orange-100 text-[#c8622a] border border-orange-200 rounded-full px-5 py-2 text-sm font-medium mb-6">
+        ✨ Celebrate Every Moment
+      </span>
+
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        Shop by Occasion
+      </h1>
+
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Find thoughtful gifts for birthdays, anniversaries, graduations, festive celebrations and every meaningful moment between Sri Lanka and Australia.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- OCCASION FILTERS -->
+<section class="py-10 border-b border-orange-100 bg-white">
+
+  <div class="container mx-auto px-4">
+
+    <div class="flex flex-wrap gap-4 justify-center">
+
+      <button class="filter-btn active">All Occasions</button>
+      <button class="filter-btn">Birthdays</button>
+      <button class="filter-btn">Anniversaries</button>
+      <button class="filter-btn">Weddings</button>
+      <button class="filter-btn">Graduations</button>
+      <button class="filter-btn">Festivals</button>
+      <button class="filter-btn">New Baby</button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- OCCASIONS GRID -->
+<section class="py-20">
+
+  <div class="container mx-auto px-4">
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- CARD -->
+      <div class="gift-card">
+
+        <div class="gift-image h-[340px]">
+
+          <img src="https://images.unsplash.com/photo-1464349153735-7db50ed83c84?q=80&w=1400&auto=format&fit=crop" alt="Birthday Gifts">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 text-white">
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm mb-4">
+              🎂 Most Popular
+            </span>
+
+            <h3 class="text-4xl font-bold mb-2">
+              Birthdays
+            </h3>
+
+            <p class="text-orange-50 max-w-sm">
+              Cakes, flowers, surprise hampers and unforgettable birthday gifts.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="gift-card">
+
+        <div class="gift-image h-[340px]">
+
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1400&auto=format&fit=crop" alt="Anniversary Gifts">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 text-white">
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm mb-4">
+              💍 Romantic Picks
+            </span>
+
+            <h3 class="text-4xl font-bold mb-2">
+              Anniversaries
+            </h3>
+
+            <p class="text-orange-50 max-w-sm">
+              Elegant flowers, luxury chocolates and romantic keepsakes.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="gift-card">
+
+        <div class="gift-image h-[340px]">
+
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?q=80&w=1400&auto=format&fit=crop" alt="Wedding Gifts">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 text-white">
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm mb-4">
+              👰 Elegant Choices
+            </span>
+
+            <h3 class="text-4xl font-bold mb-2">
+              Weddings
+            </h3>
+
+            <p class="text-orange-50 max-w-sm">
+              Premium hampers and heartfelt wedding celebration gifts.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="gift-card">
+
+        <div class="gift-image h-[340px]">
+
+          <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1400&auto=format&fit=crop" alt="Graduation Gifts">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 text-white">
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm mb-4">
+              🎓 Proud Moments
+            </span>
+
+            <h3 class="text-4xl font-bold mb-2">
+              Graduations
+            </h3>
+
+            <p class="text-orange-50 max-w-sm">
+              Celebrate achievements with meaningful congratulation gifts.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="gift-card">
+
+        <div class="gift-image h-[340px]">
+
+          <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=1400&auto=format&fit=crop" alt="Festival Gifts">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 text-white">
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm mb-4">
+              🎉 Seasonal Favorites
+            </span>
+
+            <h3 class="text-4xl font-bold mb-2">
+              Festivals
+            </h3>
+
+            <p class="text-orange-50 max-w-sm">
+              Sinhala & Tamil New Year, Christmas and festive gift collections.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="gift-card">
+
+        <div class="gift-image h-[340px]">
+
+          <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=1400&auto=format&fit=crop" alt="Baby Gifts">
+
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+          <div class="absolute bottom-6 left-6 text-white">
+
+            <span class="inline-block bg-white/20 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-sm mb-4">
+              👶 New Arrivals
+            </span>
+
+            <h3 class="text-4xl font-bold mb-2">
+              New Baby
+            </h3>
+
+            <p class="text-orange-50 max-w-sm">
+              Adorable baby hampers and thoughtful gifts for growing families.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- UPCOMING OCCASIONS -->
+<section class="pb-24">
+
+  <div class="container mx-auto px-4">
+
+    <div class="bg-white border border-orange-100 rounded-[32px] p-12 shadow-sm">
+
+      <div class="flex items-center justify-between mb-10">
+
+        <div>
+          <span class="text-[#c8622a] font-medium uppercase tracking-widest text-sm">
+            Calendar Highlights
+          </span>
+
+          <h2 class="text-4xl font-bold mt-3">
+            Upcoming Celebrations
+          </h2>
+        </div>
+
+        <button class="hidden md:block border border-orange-200 px-6 py-3 rounded-full hover:bg-orange-50 transition">
+          View Calendar
+        </button>
+
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div class="bg-[#fff7f1] border border-orange-100 rounded-3xl p-6">
+
+          <div class="text-5xl mb-5">🌸</div>
+
+          <h3 class="text-2xl font-bold mb-2">
+            Mother’s Day
+          </h3>
+
+          <p class="text-gray-500 mb-5">
+            Send flowers and heartfelt gifts for mum.
+          </p>
+
+          <span class="inline-flex bg-orange-100 text-[#c8622a] px-4 py-2 rounded-full text-sm font-medium">
+            May 12
+          </span>
+
+        </div>
+
+        <div class="bg-[#fff7f1] border border-orange-100 rounded-3xl p-6">
+
+          <div class="text-5xl mb-5">🎄</div>
+
+          <h3 class="text-2xl font-bold mb-2">
+            Christmas
+          </h3>
+
+          <p class="text-gray-500 mb-5">
+            Luxury hampers and festive surprises.
+          </p>
+
+          <span class="inline-flex bg-orange-100 text-[#c8622a] px-4 py-2 rounded-full text-sm font-medium">
+            Dec 25
+          </span>
+
+        </div>
+
+        <div class="bg-[#fff7f1] border border-orange-100 rounded-3xl p-6">
+
+          <div class="text-5xl mb-5">🎊</div>
+
+          <h3 class="text-2xl font-bold mb-2">
+            Sinhala New Year
+          </h3>
+
+          <p class="text-gray-500 mb-5">
+            Traditional sweets and family gift packs.
+          </p>
+
+          <span class="inline-flex bg-orange-100 text-[#c8622a] px-4 py-2 rounded-full text-sm font-medium">
+            April
+          </span>
+
+        </div>
+
+        <div class="bg-[#fff7f1] border border-orange-100 rounded-3xl p-6">
+
+          <div class="text-5xl mb-5">❤️</div>
+
+          <h3 class="text-2xl font-bold mb-2">
+            Valentine’s
+          </h3>
+
+          <p class="text-gray-500 mb-5">
+            Romantic flowers and chocolate boxes.
+          </p>
+
+          <span class="inline-flex bg-orange-100 text-[#c8622a] px-4 py-2 rounded-full text-sm font-medium">
+            Feb 14
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-orange-100">
+
+  <div class="container mx-auto px-4 py-12">
+
+    <div class="grid md:grid-cols-4 gap-10">
+
+      <div>
+        <h3 class="font-bold text-2xl mb-4">LankaToAus</h3>
+
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Bridging hearts between Sri Lanka and Australia through thoughtful gifting experiences.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Quick Links</h4>
+
+        <ul class="space-y-2 text-gray-500 text-sm">
+          <li><a href="#">All Gifts</a></li>
+          <li><a href="#">Occasions</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Categories</h4>
+
+        <ul class="space-y-2 text-gray-500 text-sm">
+          <li><a href="#">Flowers</a></li>
+          <li><a href="#">Cakes</a></li>
+          <li><a href="#">Gift Hampers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Support</h4>
+
+        <ul class="space-y-2 text-gray-500 text-sm">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

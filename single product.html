@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en" class="font-sans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>All Gifts - LankaToAus</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+  
+  body{
+  font-family:'DM Sans',sans-serif;
+}
+
+h1,h2,h3,h4{
+  font-family:'Playfair Display',serif;
+}
+    body{
+      background:#fffaf6;
+      color:#1a0a00;
+    }
+
+    .gift-card{
+      background:#fff;
+      border:1px solid #f5e2d6;
+      border-radius:24px;
+      overflow:hidden;
+      transition:all .3s ease;
+      position:relative;
+    }
+
+    .gift-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 40px rgba(200,98,42,.12);
+      border-color:#c8622a;
+    }
+
+    .gift-image{
+      height:260px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .gift-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .4s ease;
+    }
+
+    .gift-card:hover img{
+      transform:scale(1.08);
+    }
+
+    .gift-tag{
+      position:absolute;
+      top:16px;
+      left:16px;
+      background:#fff;
+      color:#c8622a;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:600;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
+    }
+
+    .gift-content{
+      padding:22px;
+    }
+
+    .gift-price{
+      color:#c8622a;
+      font-size:24px;
+      font-weight:700;
+    }
+
+    .gift-btn{
+      width:100%;
+      margin-top:18px;
+      background:#c8622a;
+      color:#fff;
+      padding:14px;
+      border-radius:14px;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .gift-btn:hover{
+      background:#b5531e;
+    }
+
+    .filter-btn{
+      background:#fff;
+      border:1px solid #f0dece;
+      padding:12px 20px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:500;
+      transition:.25s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:#c8622a;
+      color:#fff;
+      border-color:#c8622a;
+    }
+
+    .page-hero{
+      background:
+      radial-gradient(circle at top left, rgba(200,98,42,.08), transparent 40%),
+      linear-gradient(to bottom right,#fff7f1,#fffaf7);
+    }
+  </style>
+</head>
+
+<body class="antialiased min-h-screen flex flex-col">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 bg-[#fffaf6]">
+
+  <!-- TOP BAR -->
+  <div class="bg-[#2b0d00] text-white text-sm">
+    <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
+
+      <span class="font-medium tracking-wide">
+        🇦🇺 Fast delivery across Australia · 🇱🇰 Sourced from Sri Lanka
+      </span>
+
+      <div class="flex items-center gap-6">
+        <a href="#" class="hover:text-orange-300 transition">Help</a>
+        <a href="#" class="hover:text-orange-300 transition">Track Order</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MAIN BAR -->
+  <div class="bg-[#fffaf6] border-b border-orange-100">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="flex items-center gap-6 py-4">
+
+        <!-- LOGO -->
+        <a href="/" class="flex items-center gap-4 shrink-0">
+
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-400 to-orange-600 flex items-center justify-center text-2xl shadow-lg">
+            🎁
+          </div>
+
+          <div>
+            <h2 class="text-3xl font-bold leading-none text-[#1a0a00]">
+              LankaToAus
+            </h2>
+
+            <p class="text-sm text-gray-500 mt-1">
+              Send Love Across Borders
+            </p>
+          </div>
+
+        </a>
+
+        <!-- SEARCH -->
+        <div class="flex-1 hidden lg:block">
+
+          <div class="relative">
+
+            <input
+              type="text"
+              placeholder="Search gifts, occasions, or recipients..."
+              class="w-full h-14 rounded-full border border-orange-200 bg-[#fff5ef] px-6 pl-14 text-[15px] focus:outline-none focus:border-[#c8622a]"
+            >
+
+            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-[#c8622a]">
+              🔍
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex items-center gap-4 shrink-0">
+
+          <button class="text-2xl text-[#5c3010] hover:text-[#c8622a] transition">
+            ♡
+          </button>
+
+          <button class="relative text-2xl text-[#5c3010] hover:text-[#c8622a] transition">
+            🛒
+
+            <span class="absolute -top-1 -right-2 bg-[#c8622a] text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center">
+              3
+            </span>
+          </button>
+
+          <button class="hidden md:block border border-orange-300 text-[#c8622a] px-6 h-11 rounded-xl font-semibold hover:bg-orange-50 transition">
+            Login
+          </button>
+
+          <button class="hidden md:block bg-[#c8622a] text-white px-6 h-11 rounded-xl font-semibold hover:bg-[#b5531e] transition">
+            Sign Up
+          </button>
+
+          <button class="text-2xl text-[#5c3010]">
+            ☰
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- NAV -->
+      <div class="hidden md:flex items-center gap-8 py-4 text-[16px] font-medium">
+
+        <a href="/" class="bg-orange-100 text-[#c8622a] px-4 py-2 rounded-xl">
+          Home
+        </a>
+
+        <a href="#" class="text-[#1a0a00] hover:text-[#c8622a] transition">
+          All Gifts
+        </a>
+
+        <a href="#" class="hover:text-[#c8622a] transition">
+          Occasions
+        </a>
+
+        <a href="#" class="hover:text-[#c8622a] transition">
+          How It Works
+        </a>
+
+        <a href="#" class="hover:text-[#c8622a] transition">
+          Track Order
+        </a>
+
+        <button class="flex items-center gap-2 hover:text-[#c8622a] transition">
+          Categories
+          <span>⌄</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ROUTE BAR -->
+  <div class="bg-[#2b0d00] text-white">
+
+    <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-center gap-5 text-sm">
+
+      <span class="opacity-70">LK</span>
+
+      <span class="font-medium">Sri Lanka</span>
+
+      <span class="text-orange-300">→</span>
+
+      <span class="font-medium">Australia</span>
+
+      <span class="opacity-70">AU</span>
+
+      <div class="flex gap-3 ml-5">
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Sydney
+        </span>
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Melbourne
+        </span>
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Brisbane
+        </span>
+
+        <span class="px-4 py-1 rounded-lg border border-orange-400/20 bg-orange-400/10">
+          Perth
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+
+<!-- PRODUCT HERO -->
+<section class="py-16 bg-gradient-to-br from-[#fff7f1] to-[#fffaf6] overflow-hidden">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- BREADCRUMB -->
+    <div class="flex items-center gap-3 text-sm text-gray-500 mb-10">
+
+      <a href="#" class="hover:text-[#c8622a] transition">
+        Home
+      </a>
+
+      <span>›</span>
+
+      <a href="#" class="hover:text-[#c8622a] transition">
+        All Gifts
+      </a>
+
+      <span>›</span>
+
+      <span class="text-[#c8622a] font-medium">
+        Red Roses Bouquet
+      </span>
+
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <!-- LEFT -->
+      <div>
+
+        <!-- MAIN IMAGE -->
+        <div class="relative rounded-[36px] overflow-hidden border border-orange-100 shadow-2xl bg-white">
+
+          <img
+            src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=1400&auto=format&fit=crop"
+            class="w-full h-[650px] object-cover"
+          >
+
+          <div class="absolute top-6 left-6">
+
+            <span class="bg-white text-[#c8622a] px-5 py-2 rounded-full text-sm font-semibold shadow-lg">
+              Best Seller
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- GALLERY -->
+        <div class="grid grid-cols-4 gap-4 mt-6">
+
+          <div class="rounded-2xl overflow-hidden border-2 border-[#c8622a] cursor-pointer">
+            <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop" class="h-28 w-full object-cover">
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border border-orange-100 cursor-pointer hover:border-[#c8622a] transition">
+            <img src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?q=80&w=600&auto=format&fit=crop" class="h-28 w-full object-cover">
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border border-orange-100 cursor-pointer hover:border-[#c8622a] transition">
+            <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600&auto=format&fit=crop" class="h-28 w-full object-cover">
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border border-orange-100 cursor-pointer hover:border-[#c8622a] transition">
+            <img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?q=80&w=600&auto=format&fit=crop" class="h-28 w-full object-cover">
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div>
+
+        <!-- CATEGORY -->
+        <span class="inline-flex bg-orange-100 text-[#c8622a] px-4 py-2 rounded-full text-sm font-medium mb-6">
+          Premium Flower Collection
+        </span>
+
+        <!-- TITLE -->
+        <h1 class="text-5xl font-bold leading-tight mb-6">
+          Red Roses Luxury Bouquet
+        </h1>
+
+        <!-- REVIEWS -->
+        <div class="flex items-center gap-4 mb-8">
+
+          <div class="flex text-yellow-400 text-xl">
+            ★★★★★
+          </div>
+
+          <span class="text-gray-500">
+            4.9 Rating · 2,483 Reviews
+          </span>
+
+        </div>
+
+        <!-- PRICE -->
+        <div class="flex items-end gap-4 mb-10">
+
+          <span class="text-6xl font-bold text-[#c8622a]">
+            $65
+          </span>
+
+          <span class="text-2xl text-gray-400 line-through mb-2">
+            $85
+          </span>
+
+          <span class="bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-2">
+            Save 24%
+          </span>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+        <p class="text-lg text-gray-600 leading-relaxed mb-10">
+          A luxurious arrangement of handpicked premium red roses wrapped elegantly with modern floral styling. Perfect for birthdays, anniversaries, romantic surprises and heartfelt celebrations delivered across Australia.
+        </p>
+
+        <!-- FEATURES -->
+        <div class="space-y-5 mb-10">
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+              🌹
+            </div>
+
+            <div>
+
+              <h3 class="font-bold text-lg">
+                Fresh Premium Roses
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                Carefully selected luxury roses
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+              🚚
+            </div>
+
+            <div>
+
+              <h3 class="font-bold text-lg">
+                Fast Australia Delivery
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                Same-day delivery available in selected cities
+              </p>
+
+            </div>
+
+          </div>
+
+          <div class="flex items-center gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl">
+              🎁
+            </div>
+
+            <div>
+
+              <h3 class="font-bold text-lg">
+                Luxury Gift Wrapping
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                Beautiful premium presentation included
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- QUANTITY -->
+        <div class="mb-10">
+
+          <h3 class="font-bold text-xl mb-4">
+            Quantity
+          </h3>
+
+          <div class="flex items-center gap-4">
+
+            <div class="flex items-center border border-orange-200 rounded-2xl overflow-hidden">
+
+              <button class="w-14 h-14 text-2xl hover:bg-orange-50 transition">
+                −
+              </button>
+
+              <div class="w-16 text-center font-semibold text-lg">
+                1
+              </div>
+
+              <button class="w-14 h-14 text-2xl hover:bg-orange-50 transition">
+                +
+              </button>
+
+            </div>
+
+            <span class="text-gray-500">
+              In Stock
+            </span>
+
+          </div>
+
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="flex flex-col sm:flex-row gap-5 mb-10">
+
+          <button class="flex-1 h-16 bg-[#c8622a] hover:bg-[#b5531e] rounded-2xl text-white text-lg font-semibold transition-all duration-300 shadow-xl shadow-orange-200">
+            Add to Cart
+          </button>
+
+          <button class="flex-1 h-16 border border-orange-200 hover:bg-orange-50 rounded-2xl text-[#c8622a] text-lg font-semibold transition-all duration-300">
+            Buy Now
+          </button>
+
+        </div>
+
+        <!-- DELIVERY -->
+        <div class="bg-white border border-orange-100 rounded-3xl p-8 shadow-sm">
+
+          <div class="flex items-start gap-5">
+
+            <div class="w-14 h-14 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl shrink-0">
+              📍
+            </div>
+
+            <div>
+
+              <h3 class="text-2xl font-bold mb-3">
+                Delivery Information
+              </h3>
+
+              <p class="text-gray-500 leading-relaxed">
+                Available for delivery across Sydney, Melbourne, Brisbane and Perth. Estimated delivery within 1–2 business days.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PRODUCT DETAILS -->
+<section class="py-24">
+
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="grid lg:grid-cols-3 gap-10">
+
+      <!-- DETAILS -->
+      <div class="lg:col-span-2 space-y-10">
+
+        <!-- DESCRIPTION -->
+        <div class="gift-card p-10">
+
+          <h2 class="text-4xl font-bold mb-8">
+            Product Details
+          </h2>
+
+          <p class="text-gray-600 leading-relaxed text-lg mb-6">
+            This handcrafted bouquet includes premium long-stem red roses arranged by expert florists with luxury wrapping and ribbon detailing.
+          </p>
+
+          <ul class="space-y-4 text-gray-600 text-lg">
+
+            <li class="flex gap-3">
+              <span class="text-[#c8622a]">✓</span>
+              Fresh imported premium roses
+            </li>
+
+            <li class="flex gap-3">
+              <span class="text-[#c8622a]">✓</span>
+              Elegant luxury wrapping
+            </li>
+
+            <li class="flex gap-3">
+              <span class="text-[#c8622a]">✓</span>
+              Complimentary greeting card
+            </li>
+
+            <li class="flex gap-3">
+              <span class="text-[#c8622a]">✓</span>
+              Secure and fast delivery
+            </li>
+
+          </ul>
+
+        </div>
+
+        <!-- REVIEWS -->
+        <div class="gift-card p-10">
+
+          <h2 class="text-4xl font-bold mb-10">
+            Customer Reviews
+          </h2>
+
+          <div class="space-y-8">
+
+            <div class="border-b border-orange-100 pb-8">
+
+              <div class="flex items-center justify-between mb-4">
+
+                <h3 class="font-bold text-xl">
+                  Amanda R.
+                </h3>
+
+                <span class="text-yellow-400 text-lg">
+                  ★★★★★
+                </span>
+
+              </div>
+
+              <p class="text-gray-600 leading-relaxed">
+                Absolutely beautiful bouquet and amazing presentation. Delivery was fast and my partner loved it.
+              </p>
+
+            </div>
+
+            <div>
+
+              <div class="flex items-center justify-between mb-4">
+
+                <h3 class="font-bold text-xl">
+                  Jason M.
+                </h3>
+
+                <span class="text-yellow-400 text-lg">
+                  ★★★★★
+                </span>
+
+              </div>
+
+              <p class="text-gray-600 leading-relaxed">
+                The flowers were fresh and exactly as shown in the photos. Great customer service too.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- SIDEBAR -->
+      <div>
+
+        <div class="gift-card p-8 sticky top-32">
+
+          <h3 class="text-3xl font-bold mb-8">
+            Need Help?
+          </h3>
+
+          <div class="space-y-6">
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl shrink-0">
+                💬
+              </div>
+
+              <div>
+
+                <h4 class="font-bold text-lg mb-1">
+                  Live Chat
+                </h4>
+
+                <p class="text-gray-500 text-sm">
+                  Chat with our gifting experts
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl shrink-0">
+                📞
+              </div>
+
+              <div>
+
+                <h4 class="font-bold text-lg mb-1">
+                  Call Support
+                </h4>
+
+                <p class="text-gray-500 text-sm">
+                  +94 77 123 4567
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="flex items-start gap-4">
+
+              <div class="w-12 h-12 rounded-2xl bg-orange-100 flex items-center justify-center text-2xl shrink-0">
+                ✉️
+              </div>
+
+              <div>
+
+                <h4 class="font-bold text-lg mb-1">
+                  Email Support
+                </h4>
+
+                <p class="text-gray-500 text-sm">
+                  support@lankatoaus.com
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-orange-100">
+
+  <div class="container mx-auto px-4 py-12">
+
+    <div class="grid md:grid-cols-4 gap-10">
+
+      <div>
+        <h3 class="font-bold text-2xl mb-4">LankaToAus</h3>
+
+        <p class="text-gray-500 text-sm leading-relaxed">
+          Bridging hearts between Sri Lanka and Australia through thoughtful gifting experiences.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Quick Links</h4>
+
+        <ul class="space-y-2 text-gray-500 text-sm">
+          <li><a href="#">All Gifts</a></li>
+          <li><a href="#">Occasions</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Categories</h4>
+
+        <ul class="space-y-2 text-gray-500 text-sm">
+          <li><a href="#">Flowers</a></li>
+          <li><a href="#">Cakes</a></li>
+          <li><a href="#">Gift Hampers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4">Support</h4>
+
+        <ul class="space-y-2 text-gray-500 text-sm">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
